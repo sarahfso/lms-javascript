@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede Social</title>
+    <style>
+        *{
+            font-family: "Ubuntu", sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        .overlay-modal {
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);    
+            
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .overlay-modal.active {
+            display: flex;
+        }
+        .modal-container {
+            background-color: white;
+            width: 500px;
+            height: 256px;
+            position: relative;
+        }
+        .modal-container .modal-header {
+            display: flex;
+            padding: 12px;
+        }
+        .modal-container .modal-header button {
+            margin-left: auto;
+            background-color: transparent;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            outline: none;
+        }
+        .modal-container .modal-form .modal-content {
+            padding: 0px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-container .modal-form .modal-content > * {
+            margin-bottom: 16px;
+        }
+        .modal-container .modal-form .modal-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: flex-end;
+        }
+        .modal-container .modal-form .modal-footer .button-modal {
+            border: none;
+            border-radius: 3px;
+            margin-left: 8px;
+            padding: 12px;
+            color: white;
+            cursor: pointer;
+        }
+        .modal-container .modal-form .modal-footer .button-modal.button-close {
+            background-color: #545b62;
+        }
+        .modal-container .modal-form .modal-footer .button-modal.button-submit {
+            background-color: teal;
+        }
+        .top{
+            display: flex;
+            
+            height: 40px;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            align-items: center;
+            justify-content: space-between;
+            background-color: teal;
+        }
+        .top .logo{
+            height: 36px;
+            margin-left: 40px;
+        }
+        .top .buttons{
+            display: flex;
+            height: 100%;
+        }
+        .top .buttons button {
+            border: none;
+            height: 100%;
+            padding: 8px 20px;
+            background-color: transparent;
+            color: white;
+            outline: none;
+            border-left: 1px solid white;
+        }
+        .top .buttons button:hover {
+            background-color: steelblue;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            padding-top: 40px;
+        }
+        .container .left {
+            width: 0;
+            overflow: hidden;
+            transition: width 0.5s;
+            background-color:#f8f9fa;
+        }
+        .container .left.active {
+            display: flex;
+            flex-direction: column;
+
+            width: 400px;
+            height: calc(100vh - 40px);
+            position: fixed;
+            background-color:#f8f9fa;
+        }
+        .container .left a {
+            display: block;
+            text-decoration: none;
+            padding: 20px;
+            transition: 0.2s;
+        }
+        .container .left a:hover {
+            background-color: steelblue;
+        }
+        .container .feed {
+            display: flex;
+            flex-direction: column;
+
+            width: calc(100% - 80px);
+            padding: 40px;
+            transition: none;
+        }
+        .container .feed.active {
+            margin-left: 400px;
+            transition: margin-left 0.5s;
+        }
+        .container .feed .card {
+            display: flex;
+            flex-direction: column;
+            
+            background-color: rgba(0, 128, 128, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .container .feed .card-destaque {
+            display: flex;
+            flex-direction: column;
+            
+            color: white;
+            background-color: rgba(0, 128, 128, 0.5);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="modal-close">Fechar</button>
+            </div>
+            <form class="modal-form" action="">
+                <div class="modal-content">
+                    Nome:
+                    <input type="text" class="name-form">
+                    Mensagem:
+                    <input type="text" class="message-form">
+                </div>
+                <div class="modal-footer">
+                    <button class="button-modal button-close">Cancelar</button>
+                    <button type="submit" class="button-modal button-submit">Postar</button>
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+    <nav class="top">
+        <img class="logo" src="https://www.nicepng.com/png/full/83-832568_dc-comics-dc-comics-logo-dark.png" alt="DC Comics">
+        <div class="buttons">
+            <button class="open-modal">
+                Postar
+            </button>
+            <button class="burger">
+                &#9776
+            </button>
+        </div>
+    </nav>
+    <div class="container">
+        <nav class="left">
+            <a href="">Link</a>
+            <a href="">Link</a>
+            <a href="">Link</a>
+            <a href="">Link</a>
+        </nav>
+        <div class="feed">
+            <div class="card-destaque">
+                <h4 class="name-card-destaque"></h4>
+                <p class="message-card-destaque"></p>
+            </div>
+        
+        </div>
+        
+    </div>
+    
+    <script>
+        let posts_data = [
+            {
+                name: "Sarah",
+                message: "A vaca peida, o gato mia, que todos tenham um bom dia"
+            },
+            {
+                name: "Urameshi",
+                message: "Eu já falei que vocês tem que levar essa menina pra uma clínica, olha o que essa maluca tá falando a essa hora"
+            },
+            {
+                name: "Platão",
+                message: "Calma Urameshi, afinal quem é que é são nos dias de hoje"
+            },
+            {
+                name: "Salomão",
+                message: "Já dizia eu 'O muito saber é enfado...'"
+            },
+            {
+                name: "Urameshi",
+                message: "Lá vem o outro fazer auto-citação de novo..."
+            }
+        ]
+
+        let {name, message} = posts_data[(Math.random() * posts_data.length) | 0];
+        document.querySelector(".feed .card-destaque .name-card-destaque").innerHTML = name;
+        document.querySelector(".feed .card-destaque .message-card-destaque").innerHTML = message;
+
+        setInterval(function(){
+            let {name, message} = posts_data[(Math.random() * posts_data.length) | 0];
+            document.querySelector(".feed .card-destaque .name-card-destaque").innerHTML = name;
+            document.querySelector(".feed .card-destaque .message-card-destaque").innerHTML = message;
+        }, 2000);
+        
+        
+
+        let feed = document.querySelector(".container .feed");
+        
+        posts_data.map(post => {
+            let card = document.createElement("div");
+            card.classList.add("card");
+            feed.appendChild(card);
+
+            let h4 = document.createElement("h4");
+            h4.classList.add("name-card");
+            let text_h4 = document.createTextNode(post.name);
+            h4.appendChild(text_h4);
+            card.appendChild(h4);
+
+            let p = document.createElement("p");
+            p.classList.add("message-card");
+            let text_p = document.createTextNode(post.message);
+            p.appendChild(text_p);
+            card.appendChild(p);
+        })
+        
+        let button = document.querySelector(".top .buttons .burger");
+        let left = document.querySelector(".container .left");
+        
+        
+        button.addEventListener("click", function(){
+            left.classList.toggle("active");
+            feed.classList.toggle("active");
+        });
+
+        let openModal = document.querySelector(".open-modal");
+        let overlayModal = document.querySelector(".overlay-modal");       
+        let buttonClose = document.querySelector(".modal-container .modal-form .modal-footer .button-modal.button-close");
+        let modalClose = document.querySelector(".modal-container .modal-header .modal-close");
+
+        openModal.addEventListener("click", function(){
+            overlayModal.classList.add("active");
+        });
+
+        buttonClose.addEventListener("click", function(){
+            overlayModal.classList.remove("active");
+        });
+  
+        modalClose.addEventListener("click", function(){
+            overlayModal.classList.remove("active");
+        });
+
+        let nameForm = document.querySelector(".name-form");
+        let messageForm = document.querySelector(".message-form");
+        let buttonSubmit = document.querySelector(".modal-container .modal-form .modal-footer .button-modal.button-submit");
+
+        buttonSubmit.addEventListener("click", function(event){
+            event.preventDefault();
+            let name = nameForm.value;
+            let message = messageForm.value;
+            let new_post = {
+                name,
+                message
+            };
+
+            posts_data.push(new_post);
+
+            let card = document.createElement("div");
+            card.classList.add("card");
+            feed.appendChild(card);
+
+            let h4 = document.createElement("h4");
+            h4.classList.add("name-card");
+            let text_h4 = document.createTextNode(name);
+            h4.appendChild(text_h4);
+            card.appendChild(h4);
+
+            let p = document.createElement("p");
+            p.classList.add("message-card");
+            let text_p = document.createTextNode(message);
+            p.appendChild(text_p);
+            card.appendChild(p);
+
+            overlayModal.classList.remove("active");
+        });
+    </script>
+</body>
+</html>
