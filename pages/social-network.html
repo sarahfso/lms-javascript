@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rede Social</title>
+    <link rel="icon" href="../images/icon.png">
     <style>
         *{
             font-family: "Ubuntu", sans-serif;
@@ -152,6 +153,9 @@
             padding: 40px;
             transition: none;
         }
+        .container .feed .description{
+            padding-bottom: 40px;
+        }
         .container .feed.active {
             margin-left: 400px;
             transition: margin-left 0.5s;
@@ -198,7 +202,7 @@
         </div>
     </div>
     <nav class="top">
-        <img class="logo" src="https://www.nicepng.com/png/full/83-832568_dc-comics-dc-comics-logo-dark.png" alt="DC Comics">
+        <img class="logo" src="../images/icon.png" alt="DC Comics">
         <div class="buttons">
             <button class="open-modal">
                 Postar
@@ -216,6 +220,11 @@
             <a href="">Link</a>
         </nav>
         <div class="feed">
+            <div class="description">
+                <p>
+                    O que você quer dizer hoje? Poste uma citação. A zona de destaque exibirá cada citação registrada.
+                </p>
+            </div>
             <div class="card-destaque">
                 <h4 class="name-card-destaque"></h4>
                 <p class="message-card-destaque"></p>
@@ -257,7 +266,7 @@
             let {name, message} = posts_data[(Math.random() * posts_data.length) | 0];
             document.querySelector(".feed .card-destaque .name-card-destaque").innerHTML = name;
             document.querySelector(".feed .card-destaque .message-card-destaque").innerHTML = message;
-        }, 2000);
+        }, 3000);
         
         
 
